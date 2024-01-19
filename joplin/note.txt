@@ -1,1 +1,7 @@
 Get your Joplin access token as described in the Joplin app settings under 'Web Clipper'. It should be set as the API_KEY variable value inside the code.
+
+For installation of JoplinApi
+
+git clone  https://github.com/foxmask/joplin-api
+cd joplin-api 
+python setup.py install
