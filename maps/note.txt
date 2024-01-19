@@ -1,0 +1,2 @@
+No API key needed for the Overpass API; however, it is subject to usage policies and may require an agreement for extensive usage.
+Ensure geopy and osmxtract are installed.

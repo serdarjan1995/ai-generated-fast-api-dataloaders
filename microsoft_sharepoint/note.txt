@@ -1,0 +1,3 @@
+Create an App Registration in Microsoft Entra ID.
+Grant the following API Permissions for the app: Sites.ReadAll, Files.ReadAll, BrowserSiteLists.Read.All (Grant Admin Consent required).
+Make sure to have the client_id, client_secret, and tenant_id ready for authentication.

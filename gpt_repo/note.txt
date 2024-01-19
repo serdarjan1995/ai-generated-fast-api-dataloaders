@@ -1,0 +1,1 @@
+Create an API key which will be used for authenticating your requests.

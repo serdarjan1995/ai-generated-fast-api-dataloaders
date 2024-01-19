@@ -1,0 +1,1 @@
+Ensure all tickers provided are valid and have corresponding SEC filings available.

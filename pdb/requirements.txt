@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+llama-hub
+llama-index
+
+requests

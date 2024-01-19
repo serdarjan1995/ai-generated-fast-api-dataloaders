@@ -1,0 +1,1 @@
+Before using the API, the user must replace 'SECURE_API_KEY' in get_api_key function with their actual API key.

@@ -1,0 +1,5 @@
+fastapi==0.75.1
+boto3==1.24.11
+pydantic==1.9.0
+
+boto3

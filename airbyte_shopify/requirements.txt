@@ -1,0 +1,5 @@
+fastapi
+llama_hub
+airbyte-cdk
+
+airbyte-source-shopify

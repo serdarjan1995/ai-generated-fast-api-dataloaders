@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+pydantic
+llama_index
+opendal
+
+opendal==0.30.3

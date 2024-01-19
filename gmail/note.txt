@@ -1,0 +1,2 @@
+User must register with Google and obtain the required access tokens.
+User must have 'token.json' with Google OAuth credentials placed in the root directory where the application runs.

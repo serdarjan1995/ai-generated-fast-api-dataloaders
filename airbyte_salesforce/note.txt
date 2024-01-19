@@ -1,0 +1,2 @@
+Installation of llama_hub and airbyte-source-salesforce python packages. Run 'pip install llama_hub airbyte-source-salesforce'.
+An API key must be created and inserted into the 'API_KEY' variable in the code.

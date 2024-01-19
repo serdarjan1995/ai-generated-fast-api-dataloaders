@@ -1,0 +1,1 @@
+You need to register with Google and generate API credentials (which includes `client_id` and `client_secret`). These credentials should be provided as input via the FastAPI endpoint to authenticate the requests.

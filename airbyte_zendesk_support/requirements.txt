@@ -1,0 +1,8 @@
+fastapi==0.78.0
+llama_hub==0.1.0
+airbyte-source-zendesk-support==0.1.1
+uvicorn==0.17.6
+python-multipart==0.0.5
+PyJWT==2.3.0
+
+airbyte-source-zendesk-support

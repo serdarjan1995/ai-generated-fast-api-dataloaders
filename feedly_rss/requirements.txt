@@ -1,0 +1,6 @@
+fastapi==0.78.0
+feedly-client==0.28
+uvicorn==0.17.6
+pydantic==1.9.1
+
+feedly-client

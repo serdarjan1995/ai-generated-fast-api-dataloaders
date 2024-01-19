@@ -1,0 +1,1 @@
+Get your Joplin access token as described in the Joplin app settings under 'Web Clipper'. It should be set as the API_KEY variable value inside the code.

@@ -1,0 +1,2 @@
+Create an API key or user account at https://rayyan.ai
+Ensure rayyan Python package and llama_index module are installed and properly configured

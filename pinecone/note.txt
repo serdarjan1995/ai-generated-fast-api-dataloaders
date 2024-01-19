@@ -1,0 +1,3 @@
+The user must replace 'YOUR_ACTUAL_SECRET_API_KEY' with their actual Pinecone API key in the code.
+The Pinecone environment is set to 'us-west1-gcp', the user should ensure they have access to this environment or modify the environment in the code accordingly.
+The user must have an active Pinecone account and corresponding credentials.

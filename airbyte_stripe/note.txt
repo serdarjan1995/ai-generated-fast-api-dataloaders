@@ -1,0 +1,2 @@
+Create an API key with the expected value 'EXPECTED_API_KEY' and pass it in the 'access_token' header for authentication.
+Install the required dependencies listed in the requirements.txt file.

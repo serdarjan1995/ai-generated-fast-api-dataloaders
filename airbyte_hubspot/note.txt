@@ -1,0 +1,2 @@
+An access token is required to authenticate requests to the Hubspot API.
+Configuration information following the JSON schema found at https://github.com/airbytehq/airbyte/blob/master/airbyte-integrations/connectors/source-hubspot/source_hubspot/spec.yaml.

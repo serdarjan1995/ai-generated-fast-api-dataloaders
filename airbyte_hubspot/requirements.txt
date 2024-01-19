@@ -1,0 +1,9 @@
+fastapi
+pydantic
+crypto
+python-multipart
+llama-hub
+airbyte-source-hubspot
+source-hubspot
+
+source_hubspot

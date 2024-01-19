@@ -1,0 +1,6 @@
+fastapi==0.78.0
+pandas==1.4.0
+pydantic==1.9.1
+pandasai==0.1
+uvicorn[standard]==0.17.6
+pandasai

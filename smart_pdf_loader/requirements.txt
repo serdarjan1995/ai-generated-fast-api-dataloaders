@@ -1,0 +1,7 @@
+fastapi==0.75.0
+uvicorn==0.17.6
+pydantic==1.9.0
+llama_index==0.1
+llmsherpa==0.1
+
+llmsherpa

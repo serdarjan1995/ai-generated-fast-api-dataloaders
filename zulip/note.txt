@@ -1,0 +1,2 @@
+Create an API key for the Zulip bot and set it as the ZULIP_TOKEN environment variable
+Set the ZULIP_EMAIL and ZULIP_DOMAIN environment variables to match the Zulip bot's email and Zulip domain

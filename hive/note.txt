@@ -1,0 +1,3 @@
+Create an API key
+Install necessary Python packages with 'pip install -r requirements.txt'
+Ensure HiveServer2 is running and accessible

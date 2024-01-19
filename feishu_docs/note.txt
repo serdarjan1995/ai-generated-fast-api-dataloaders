@@ -1,0 +1,2 @@
+Register and create a custom application on Feishu to get app_id and app_secret
+Make POST request at '/token' endpoint for OAuth2 token

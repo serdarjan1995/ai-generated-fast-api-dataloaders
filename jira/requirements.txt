@@ -1,0 +1,8 @@
+fastapi
+jira
+pydantic
+uvicorn
+python-multipart
+python-dotenv
+
+jira

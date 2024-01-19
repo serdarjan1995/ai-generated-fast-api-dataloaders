@@ -1,0 +1,2 @@
+The server where FastAPI app is running must have `expected_api_key` as an environment variable or must replace 'expected_api_key' with the actual API key in the `get_api_key` function.
+Instruct users to create an API token at https://<your zendesk subdomain>.zendesk.com/admin/api/settings and use this token as part of the configuration object.

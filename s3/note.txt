@@ -1,0 +1,2 @@
+Creating an AWS Access Key at https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html
+EXPECTED_API_KEY environment variable must be set with the actual API key

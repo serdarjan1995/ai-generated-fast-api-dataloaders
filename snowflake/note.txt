@@ -1,0 +1,4 @@
+Create a Snowflake account.
+Obtain account, user, and password for the Snowflake database.
+Optionally, define the database, schema, warehouse, role, and proxy settings for the connection.
+Have the Snowflake SQLAlchemy URL ready.

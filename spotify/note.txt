@@ -1,0 +1,4 @@
+Create an application at https://developer.spotify.com/dashboard/applications.
+Set up an environment variable SPOTIPY_CLIENT_ID with your Spotify application's client ID.
+Set up an environment variable SPOTIPY_CLIENT_SECRET with your Spotify application's client secret.
+Set up an environment variable SPOTIPY_REDIRECT_URI with your Spotify application's redirect URI.

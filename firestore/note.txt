@@ -1,0 +1,2 @@
+An API key must be created for authentication.
+Google Cloud credentials must be loaded as environment variables as per Firestore documentation.

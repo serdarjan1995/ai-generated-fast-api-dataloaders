@@ -1,0 +1,5 @@
+fastapi==0.74.1
+uvicorn==0.16.0
+pydantic==1.9.0
+
+nougat-ocr

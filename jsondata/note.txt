@@ -1,0 +1,1 @@
+API key must be generated and provided as a query parameter 'api_key' when calling the '/load_json/' endpoint.

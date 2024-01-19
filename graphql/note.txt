@@ -1,0 +1,2 @@
+Your API key for 'X-API-KEY' header
+The gql package

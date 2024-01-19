@@ -1,0 +1,2 @@
+Sign up for a GitHub account and generate a personal access token with required permissions to read issues from the intended repositories.
+Replace 'expected-key' with the actual expected API key for validation when deploying the FastAPI app.

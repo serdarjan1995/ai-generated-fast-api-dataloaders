@@ -1,0 +1,3 @@
+Windows operating system is required
+Outlook installed and configured on the local machine
+User's Outlook calendar must be accessible

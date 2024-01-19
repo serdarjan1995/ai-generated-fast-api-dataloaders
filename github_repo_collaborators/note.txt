@@ -1,0 +1,2 @@
+Create a personal access token at https://github.com/settings/tokens with the `read:org` and `read:project` scopes for public repos; you also need `repo` scope for private repos.
+Set the GITHUB_TOKEN environment variable with your personal access token before running the application.

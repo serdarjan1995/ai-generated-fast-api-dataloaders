@@ -1,0 +1,6 @@
+fastapi
+llama-hub
+airbyte-source-salesforce
+source-salesforce
+uvicorn
+airbyte-source-salesforce

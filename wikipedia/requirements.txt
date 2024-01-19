@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+wikipedia
+pydantic
+
+wikipedia~=1.4

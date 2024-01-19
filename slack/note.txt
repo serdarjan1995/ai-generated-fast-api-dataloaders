@@ -1,0 +1,1 @@
+Set the environment variable SLACK_BOT_TOKEN with your Slack API token.

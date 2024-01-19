@@ -1,0 +1,2 @@
+Generate an App Password for Google Keep at https://support.google.com/accounts/answer/185833?hl=en
+An API Key must be created and passed as 'X-API-Key' on each request header

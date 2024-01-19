@@ -1,0 +1,1 @@
+API access token needs to be created and passed as a header for authentication.

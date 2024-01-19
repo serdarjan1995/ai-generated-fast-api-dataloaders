@@ -1,0 +1,1 @@
+An API key must be obtained and submitted in the 'Authorization' header for accessing the Hugging Face API.

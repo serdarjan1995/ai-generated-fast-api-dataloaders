@@ -1,0 +1,1 @@
+Must have a valid API key to authenticate requests. Replace 'YOUR_API_KEY' with the actual API key provided.

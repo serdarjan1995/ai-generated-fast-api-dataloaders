@@ -1,0 +1,6 @@
+fastapi
+pypreprocess
+uvicorn
+python-multipart
+
+pypreprocess

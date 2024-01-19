@@ -1,0 +1,8 @@
+fastapi==0.78.0
+uvicorn==0.17.6
+pydantic==1.9.1
+llama_index==0.1
+llama_hub==0.1
+#API-calling
+tenacity
+requests

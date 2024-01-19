@@ -1,0 +1,2 @@
+To use this tool, create an API key and your username at https://hatenablog.com/
+Set ATOM_PUB_ROOT_ENDPOINT, ATOM_PUB_API_KEY, and HATENA_BLOG_USERNAME as environment variables or pass them directly when making API requests.

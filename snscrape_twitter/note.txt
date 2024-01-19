@@ -1,0 +1,1 @@
+API key must be created and provided as a query parameter with the name 'access_token' and value 'SECRET_API_KEY'

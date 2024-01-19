@@ -1,0 +1,1 @@
+Create an API key to use the SmartPDFLoader service.

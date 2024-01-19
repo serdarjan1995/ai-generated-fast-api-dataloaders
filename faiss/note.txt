@@ -1,0 +1,2 @@
+A running instance of Faiss Index must be set up and passed to the tool.
+An authentication dependency must be present and configured, for example using OAuth2 scheme or an API key-based authentication.

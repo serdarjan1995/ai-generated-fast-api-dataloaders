@@ -1,0 +1,8 @@
+fastapi
+typer
+llama_hub
+airbyte-source-gong
+pydantic
+python-multipart
+
+airbyte-source-gong

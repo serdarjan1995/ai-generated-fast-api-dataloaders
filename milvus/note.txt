@@ -1,0 +1,2 @@
+Creating an API key which will be used to authenticate requests to the FastAPI app
+Milvus server running with the specific host and port configurations, accessible from the environment where the FastAPI app is running

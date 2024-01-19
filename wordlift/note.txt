@@ -1,0 +1,1 @@
+To use the WordLift GraphQL Reader, make sure you have with you the WordLift Key which can be created at https://docs.wordlift.io/pages/key-concepts/#wordlift-key.

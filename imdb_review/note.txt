@@ -1,0 +1,2 @@
+Ensure you have the corresponding webdrivers installed and available in your PATH for the chosen webdriver_engine.
+Windows machine is recommended as this has only been tested on Windows

@@ -1,0 +1,10 @@
+fastapi
+pydantic
+python-multipart
+olefile
+zlib
+struct
+pathlib
+shutil
+typing
+olefile

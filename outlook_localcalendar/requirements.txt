@@ -1,0 +1,8 @@
+fastapi==0.78.0
+uvicorn==0.17.6
+python-dateutil==2.8.2
+pydantic==1.9.0
+
+# Platform-specific dependencies
+pypiwin32==223; platform_system=='Windows'
+pywin32

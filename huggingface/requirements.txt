@@ -1,0 +1,7 @@
+fastapi==0.78.0
+starlette==0.19.1
+uvicorn==0.17.6
+huggingface-hub
+pandas==1.4.2
+
+huggingface-hub

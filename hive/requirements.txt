@@ -1,0 +1,8 @@
+fastapi==0.68.1
+pydantic==1.8.2
+uvicorn==0.15.0
+pyhive==0.6.3
+hmsclient==0.1.1
+
+pyhive
+thrift_sasl

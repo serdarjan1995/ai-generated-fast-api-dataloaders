@@ -1,0 +1,1 @@
+Register an application in Microsoft Entra (Azure Active Directory) to obtain a client_id and client_secret. Set up MS Graph permission 'Files.Read.All', and make sure to add a redirect URI for 'https://localhost' under mobile and native applications for interactive authentication.

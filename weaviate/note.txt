@@ -1,0 +1,2 @@
+An active Weaviate cluster accessible via host URL.
+Username and password for the Weaviate cluster MUST be provided as basic auth for the '/load_data' endpoint.

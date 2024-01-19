@@ -1,0 +1,2 @@
+An Opensearch service must be running at the specified host and port.
+User must create a valid username and password for basic authentication.

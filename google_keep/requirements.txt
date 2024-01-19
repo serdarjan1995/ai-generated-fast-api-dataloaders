@@ -1,0 +1,5 @@
+fastapi==0.78.0
+gkeepapi==0.13.8
+pydantic==1.9.0
+uvicorn==0.17.6
+gkeepapi

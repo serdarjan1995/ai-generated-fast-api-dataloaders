@@ -1,0 +1,7 @@
+fastapi
+requests
+bilibili_api
+pydantic
+uvicorn
+bilibili_api
+requests

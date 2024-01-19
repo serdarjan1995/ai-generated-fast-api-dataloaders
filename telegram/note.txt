@@ -1,0 +1,2 @@
+Create an API ID and hash at https://my.telegram.org
+Provide API ID, API hash, and phone number for Telegram bot authentication

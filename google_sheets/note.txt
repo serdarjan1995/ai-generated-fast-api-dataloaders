@@ -1,0 +1,1 @@
+Obtain API key from your Google developer console and set it as the API_KEY variable in the code.

@@ -1,0 +1,3 @@
+Elasticsearch or Opensearch server running with accessible endpoint.
+Index name of the Elasticsearch or Opensearch to fetch data from.
+Basic Auth credentials if protected.

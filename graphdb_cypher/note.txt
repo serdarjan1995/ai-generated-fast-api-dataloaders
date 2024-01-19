@@ -1,0 +1,2 @@
+Prepare authentication API key
+Provide GRAPH_DB_URI, GRAPH_DB_USERNAME, GRAPH_DB_PASSWORD, GRAPH_DB_NAME, and API_KEY in the app configuration
