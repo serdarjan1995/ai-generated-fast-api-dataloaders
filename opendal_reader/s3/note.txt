@@ -1,0 +1,3 @@
+AWS Access Key and Secret Key must be generated and provided by user for S3 access
+OpendalReader must be installed as a dependency from llama_index
+AWS credentials may need to be configured manually in the environment if not provided

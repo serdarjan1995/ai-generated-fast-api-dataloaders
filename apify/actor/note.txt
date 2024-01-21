@@ -1,0 +1,1 @@
+An Apify API token is required to use this tool. You can obtain your token at https://console.apify.com/account/integrations.

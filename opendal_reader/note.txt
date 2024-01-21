@@ -1,1 +1,1 @@
-You must have an API key to access this service.
+Creating an API key and setting it as an environment variable or passing it through an HTTP request header.

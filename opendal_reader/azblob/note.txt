@@ -1,0 +1,2 @@
+The user needs to replace 'expected_api_key' with their actual API key.
+Ensure you have an Azure Blob Storage account with access credentials.
