@@ -1,28 +1,114 @@
-
-from typing import List
-
 from fastapi import FastAPI, HTTPException, Security
 from fastapi.security.api_key import APIKeyHeader
-from pydantic import BaseModel
+import requests
 
-app = FastAPI()
+app = FastAPI(openapi_url="/api/v1/openapi.json")
 
-API_KEY_NAME = 'access_token'
-api_key_header = APIKeyHeader(name=API_KEY_NAME, auto_error=False)
+KIBELA_TEAM_NAME = "KIBELA_TEAM_NAME"
+KIBELA_API_URL = f"https://{KIBELA_TEAM_NAME}.kibe.la/api/v1"
 
-class NoteModel(BaseModel):
-    content: str
-    id: str
-    title: str
-    url: str
+KIBELA_TOKEN_HEADER = "access_token"
+KIBELA_ACCESS_TOKEN = "KIBELA_ACCESS_TOKEN"
+token_header = APIKeyHeader(name=KIBELA_TOKEN_HEADER, auto_error=True)
 
-class DocumentModel(BaseModel):
-    text: str
 
-@app.post('/load-data', response_model=List[DocumentModel], summary='Load data from Kibela', description='Fetches article from your Kibela notes using the GraphQL API.')
-async def load_data(team: str, api_key: str = Security(api_key_header)):
-    # Placeholder for actual data loading logic
-    # Here we should integrate the KibelaReader and its load_data method,
-    # but this requires the request function and the KibelaReader class itself.
-    raise HTTPException(status_code=501, detail='Not implemented')
+@app.get("/user")
+def get_user(access_token: str = Security(token_header)):
+    print(access_token)
+    headers = {"Authorization": f"Bearer {access_token}"}
+    response = requests.post(
+        KIBELA_API_URL,
+        headers=headers,
+        data={
+            "query": "query KibelaUser {\
+                    currentUser {\
+                    account\
+                    }\
+                }"
+        },
+    )
+    if response.status_code != 200:
+        raise HTTPException(
+            status_code=response.status_code, detail="Invalid Access Token"
+        )
+    return response.json()
 
+
+@app.get("/notes")
+def get_notes(access_token: str = Security(token_header)):
+    print(access_token)
+    headers = {"Authorization": f"Bearer {access_token}"}
+    response = requests.post(
+        KIBELA_API_URL,
+        headers=headers,
+        data={
+            "query": "query KibelaNotes {\
+            notes(first: 10, orderBy: { field: CONTENT_UPDATED_AT, direction: DESC }) {\
+            edges {\
+                node {\
+                title\
+                content\
+                publishedAt\
+                }\
+            }\
+            }\
+        }"
+        },
+    )
+    if response.status_code != 200:
+        raise HTTPException(
+            status_code=response.status_code, detail="Invalid Access Token"
+        )
+    return response.json()
+
+
+@app.get("/folders")
+def get_folders(access_token: str = Security(token_header)):
+    print(access_token)
+    headers = {"Authorization": f"Bearer {access_token}"}
+    response = requests.post(
+        KIBELA_API_URL,
+        headers=headers,
+        data={
+            "query": "query KibelaFolders {\
+            folders(first: 10) {\
+                edges {\
+                    node {\
+                        name\
+                    }\
+                }\
+            }\
+        }"
+        },
+    )
+    if response.status_code != 200:
+        raise HTTPException(
+            status_code=response.status_code, detail="Invalid Access Token"
+        )
+    return response.json()
+
+
+@app.get("/groups")
+def get_groups(access_token: str = Security(token_header)):
+    print(access_token)
+    headers = {"Authorization": f"Bearer {access_token}"}
+    response = requests.post(
+        KIBELA_API_URL,
+        headers=headers,
+        data={
+            "query": "query KibelaGroups {\
+            groups(first: 10) {\
+                edges {\
+                    node {\
+                        name\
+                    }\
+                }\
+            }\
+        }"
+        },
+    )
+    if response.status_code != 200:
+        raise HTTPException(
+            status_code=response.status_code, detail="Invalid Access Token"
+        )
+    return response.json()
