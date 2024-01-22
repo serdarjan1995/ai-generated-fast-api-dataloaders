@@ -1,1 +1,0 @@
-Set BEARER_TOKEN environment variable with your bearer token.
