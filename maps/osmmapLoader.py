@@ -1,19 +1,166 @@
 from fastapi import FastAPI, Query, HTTPException
 from typing import List, Optional
-from base import OpenMap, Document
 
-app = FastAPI()
+"""Simple reader that reads OSMmap data from overpass API"""
 
-@app.get('/load_data', summary='Load map data for a specified area.', response_model=List[Document])
+import random
+import string
+import warnings
+from typing import List, Optional
+
+from llama_index.readers.base import BaseReader
+from llama_index.readers.schema.base import Document
+
+warnings.filterwarnings("ignore")
+
+
+class OpenMap(BaseReader):
+    """OpenMap Reader.
+
+    Get the map Features from the overpass api(osm) for the given location/area
+
+
+    Args:
+        localarea(str) -  Area or location you are searching for
+        tag_values(str) -  filter for the give area
+        search_tag(str)  - Tag that you are looking for
+
+        if you not sure about the search_tag and tag_values visit https://taginfo.openstreetmap.org/tags
+
+        remove_keys(list) - list of keys that need to be removed from the response
+                            by default  following keys will be removed ['nodes','geometry','members']
+
+    """
+
+    def __init__(self) -> None:
+        """Initialize with parameters."""
+        super().__init__()
+
+    @staticmethod
+    def _get_user() -> str:
+        # choose from all lowercase letter
+        letters = string.ascii_lowercase
+        result_str = "".join(random.choice(letters) for i in range(10))
+        return result_str
+
+    @staticmethod
+    def _get_latlon(locarea: str, user_agent: str) -> tuple:
+        try:
+            from geopy.geocoders import Nominatim
+        except ImportError:
+            raise ImportError("install geopy using `pip3 install geopy`")
+
+        geolocator = Nominatim(user_agent=user_agent)
+        location = geolocator.geocode(locarea)
+        return (location.latitude, location.longitude) if location else (None, None)
+
+    def load_data(
+        self,
+        localarea: str,
+        search_tag: Optional[str] = "amenity",
+        remove_keys: Optional[List] = ["nodes", "geometry", "members"],
+        tag_only: Optional[bool] = True,
+        tag_values: Optional[List] = [""],
+        local_area_buffer: Optional[int] = 2000,
+    ) -> List[str]:
+        """
+        This loader will bring you the all the node values from the open street maps for the given location
+
+        Args:
+
+        localarea(str) -  Area or location you are searching for
+        search_tag(str)  - Tag that you are looking for
+        if you not sure about the search_tag and tag_values visit https://taginfo.openstreetmap.org/tags
+
+        remove_keys(list) - list of keys that need to be removed from the response
+                            by default it those keys will be removed ['nodes','geometry','members']
+
+        tag_only(bool) - if True it  return the nodes which has tags if False returns all the nodes
+        tag_values(str) -  filter for the give area
+        local_area_buffer(int) - range that you wish to cover (Default 2000(2km))
+        """
+        try:
+            from osmxtract import location, overpass
+            from osmxtract.errors import OverpassBadRequest
+        except ImportError:
+            raise ImportError("install osmxtract using `pip3 install osmxtract`")
+
+        null_list = ["", "null", "none", None]
+        extra_info = {}
+        local_area = localarea
+
+        if str(local_area).lower().strip() in null_list:
+            raise Exception("The Area should not be null")
+
+        user = self._get_user()
+        lat, lon = self._get_latlon(local_area, user)
+        try:
+            bounds = location.from_buffer(lat, lon, buffer_size=int(local_area_buffer))
+        except TypeError:
+            raise TypeError("Please give valid location name or check for spelling")
+
+        # overpass query generation and execution
+        tag_values = [str(i).lower().strip() for i in tag_values]
+        query = overpass.ql_query(
+            bounds, tag=str(search_tag).lower(), values=tag_values, timeout=500
+        )
+
+        extra_info["overpass_query"] = query
+        try:
+            response = overpass.request(query)
+
+        except OverpassBadRequest:
+            raise TypeError(
+                f"Error while executing the Query {query} please check the Args"
+            )
+
+        res = response["elements"]
+
+        _meta = response.copy()
+        del _meta["elements"]
+        extra_info["overpass_meta"] = str(_meta)
+        extra_info["lat"] = lat
+        extra_info["lon"] = lon
+        # filtering for only the tag values
+        filtered = [i for i in res if "tags" in i.keys()] if tag_only else res
+
+        for key in remove_keys:
+            [i.pop(key, None) for i in filtered]
+        if filtered:
+            return filtered
+        else:
+            return res
+
+
+app = FastAPI(openapi_url="/api/v1/openapi.json")
+
+
+@app.get(
+    "/load_data",
+    summary="Load map data for a specified area.",
+    response_model=List[str],
+)
 def load_data(
-    localarea: str = Query(..., description='Area or location you are searching for', max_length=100),
-    search_tag: str = Query(None, description='Tag that you are looking for'),
-    remove_keys: List[str] = Query(['nodes', 'geometry', 'members'], description='List of keys that need to be removed from the response'),
-    tag_only: bool = Query(True, description='Return the nodes that have tags if True, otherwise return all nodes'),
-    tag_values: List[str] = Query([], description='Filters for the given area'),
-    local_area_buffer: int = Query(2000, description='Range that you wish to cover in meters'),
-    key: Optional[str] = Query(None, description='Your access key or token, if applicable')
-) -> List[Document]:
+    localarea: str = Query(
+        ..., description="Area or location you are searching for", max_length=100
+    ),
+    search_tag: str = Query(None, description="Tag that you are looking for"),
+    remove_keys: List[str] = Query(
+        ["nodes", "geometry", "members"],
+        description="List of keys that need to be removed from the response",
+    ),
+    tag_only: bool = Query(
+        True,
+        description="Return the nodes that have tags if True, otherwise return all nodes",
+    ),
+    tag_values: List[str] = Query([], description="Filters for the given area"),
+    local_area_buffer: int = Query(
+        2000, description="Range that you wish to cover in meters"
+    ),
+    key: Optional[str] = Query(
+        None, description="Your access key or token, if applicable"
+    ),
+) -> List[str]:
     loader = OpenMap()
     try:
         documents = loader.load_data(
@@ -22,7 +169,7 @@ def load_data(
             tag_only=tag_only,
             remove_keys=remove_keys,
             tag_values=tag_values,
-            local_area_buffer=local_area_buffer
+            local_area_buffer=local_area_buffer,
         )
         return documents
     except Exception as e:

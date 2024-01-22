@@ -1,7 +1,6 @@
 fastapi==0.82.0
 uvicorn==0.18.2
-llama_index==0.1.5
+llama_index
 geopy==2.2.0
-osmxtract==0.1.7
 osmxtract
 geopy
