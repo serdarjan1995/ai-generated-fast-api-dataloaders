@@ -1,0 +1,184 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
+    "paths": {
+        "/load_data": {
+            "post": {
+                "summary": "Load Data",
+                "operationId": "load_data_load_data_post",
+                "parameters": [
+                    {
+                        "description": "The JQL query string to fetch issues.",
+                        "required": true,
+                        "schema": {
+                            "title": "Query",
+                            "type": "string",
+                            "description": "The JQL query string to fetch issues."
+                        },
+                        "name": "query",
+                        "in": "query"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Body_load_data_load_data_post"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "title": "Response Load Data Load Data Post",
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Document"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "BasicAuth": {
+                "title": "BasicAuth",
+                "required": [
+                    "email",
+                    "api_token",
+                    "server_url"
+                ],
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "title": "Email",
+                        "type": "string"
+                    },
+                    "api_token": {
+                        "title": "Api Token",
+                        "type": "string"
+                    },
+                    "server_url": {
+                        "title": "Server Url",
+                        "type": "string"
+                    }
+                }
+            },
+            "Body_load_data_load_data_post": {
+                "title": "Body_load_data_load_data_post",
+                "type": "object",
+                "properties": {
+                    "basic_auth": {
+                        "$ref": "#/components/schemas/BasicAuth"
+                    },
+                    "oauth": {
+                        "$ref": "#/components/schemas/Oauth2"
+                    }
+                }
+            },
+            "Document": {
+                "title": "Document",
+                "required": [
+                    "text",
+                    "extra_info"
+                ],
+                "type": "object",
+                "properties": {
+                    "text": {
+                        "title": "Text",
+                        "type": "string"
+                    },
+                    "extra_info": {
+                        "title": "Extra Info",
+                        "type": "object"
+                    }
+                }
+            },
+            "HTTPValidationError": {
+                "title": "HTTPValidationError",
+                "type": "object",
+                "properties": {
+                    "detail": {
+                        "title": "Detail",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        }
+                    }
+                }
+            },
+            "Oauth2": {
+                "title": "Oauth2",
+                "required": [
+                    "cloud_id",
+                    "api_token"
+                ],
+                "type": "object",
+                "properties": {
+                    "cloud_id": {
+                        "title": "Cloud Id",
+                        "type": "string"
+                    },
+                    "api_token": {
+                        "title": "Api Token",
+                        "type": "string"
+                    }
+                }
+            },
+            "ValidationError": {
+                "title": "ValidationError",
+                "required": [
+                    "loc",
+                    "msg",
+                    "type"
+                ],
+                "type": "object",
+                "properties": {
+                    "loc": {
+                        "title": "Location",
+                        "type": "array",
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "integer"
+                                }
+                            ]
+                        }
+                    },
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}

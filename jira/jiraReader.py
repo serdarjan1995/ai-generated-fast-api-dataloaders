@@ -4,7 +4,6 @@ from fastapi.security.api_key import APIKeyHeader
 from pydantic import BaseModel
 from jira import JIRA
 
-# app = FastAPI()
 app = FastAPI(openapi_url="/api/v1/openapi.json")
 
 api_key_header = APIKeyHeader(name="api_token", auto_error=False)
