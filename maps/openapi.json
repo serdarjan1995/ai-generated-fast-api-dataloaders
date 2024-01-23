@@ -1,0 +1,185 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
+    "paths": {
+        "/load_data": {
+            "get": {
+                "summary": "Load map data for a specified area.",
+                "operationId": "load_data_load_data_get",
+                "parameters": [
+                    {
+                        "description": "Area or location you are searching for",
+                        "required": true,
+                        "schema": {
+                            "title": "Localarea",
+                            "maxLength": 100,
+                            "type": "string",
+                            "description": "Area or location you are searching for"
+                        },
+                        "name": "localarea",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Tag that you are looking for",
+                        "required": false,
+                        "schema": {
+                            "title": "Search Tag",
+                            "type": "string",
+                            "description": "Tag that you are looking for"
+                        },
+                        "name": "search_tag",
+                        "in": "query"
+                    },
+                    {
+                        "description": "List of keys that need to be removed from the response",
+                        "required": false,
+                        "schema": {
+                            "title": "Remove Keys",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "description": "List of keys that need to be removed from the response",
+                            "default": [
+                                "nodes",
+                                "geometry",
+                                "members"
+                            ]
+                        },
+                        "name": "remove_keys",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Return the nodes that have tags if True, otherwise return all nodes",
+                        "required": false,
+                        "schema": {
+                            "title": "Tag Only",
+                            "type": "boolean",
+                            "description": "Return the nodes that have tags if True, otherwise return all nodes",
+                            "default": true
+                        },
+                        "name": "tag_only",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Filters for the given area",
+                        "required": false,
+                        "schema": {
+                            "title": "Tag Values",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "description": "Filters for the given area",
+                            "default": []
+                        },
+                        "name": "tag_values",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Range that you wish to cover in meters",
+                        "required": false,
+                        "schema": {
+                            "title": "Local Area Buffer",
+                            "type": "integer",
+                            "description": "Range that you wish to cover in meters",
+                            "default": 2000
+                        },
+                        "name": "local_area_buffer",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Your access key or token, if applicable",
+                        "required": false,
+                        "schema": {
+                            "title": "Key",
+                            "type": "string",
+                            "description": "Your access key or token, if applicable"
+                        },
+                        "name": "key",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "title": "Response Load Data Load Data Get",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "HTTPValidationError": {
+                "title": "HTTPValidationError",
+                "type": "object",
+                "properties": {
+                    "detail": {
+                        "title": "Detail",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        }
+                    }
+                }
+            },
+            "ValidationError": {
+                "title": "ValidationError",
+                "required": [
+                    "loc",
+                    "msg",
+                    "type"
+                ],
+                "type": "object",
+                "properties": {
+                    "loc": {
+                        "title": "Location",
+                        "type": "array",
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "integer"
+                                }
+                            ]
+                        }
+                    },
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
