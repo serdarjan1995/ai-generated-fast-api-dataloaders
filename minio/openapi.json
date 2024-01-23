@@ -1,0 +1,215 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
+    "paths": {
+        "/read_minio": {
+            "post": {
+                "summary": "Read files from Minio",
+                "operationId": "read_minio_read_minio_post",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "Bucket",
+                            "type": "string"
+                        },
+                        "name": "bucket",
+                        "in": "query"
+                    },
+                    {
+                        "required": false,
+                        "schema": {
+                            "title": "Key",
+                            "type": "string"
+                        },
+                        "name": "key",
+                        "in": "query"
+                    },
+                    {
+                        "required": false,
+                        "schema": {
+                            "title": "Prefix",
+                            "type": "string",
+                            "default": ""
+                        },
+                        "name": "prefix",
+                        "in": "query"
+                    },
+                    {
+                        "required": false,
+                        "schema": {
+                            "title": "Filename As Id",
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "name": "filename_as_id",
+                        "in": "query"
+                    },
+                    {
+                        "required": false,
+                        "schema": {
+                            "title": "Num Files Limit",
+                            "type": "integer"
+                        },
+                        "name": "num_files_limit",
+                        "in": "query"
+                    },
+                    {
+                        "required": false,
+                        "schema": {
+                            "title": "File Metadata",
+                            "type": "string"
+                        },
+                        "name": "file_metadata",
+                        "in": "query"
+                    },
+                    {
+                        "required": false,
+                        "schema": {
+                            "title": "Minio Endpoint",
+                            "type": "string"
+                        },
+                        "name": "minio_endpoint",
+                        "in": "query"
+                    },
+                    {
+                        "required": false,
+                        "schema": {
+                            "title": "Minio Secure",
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "name": "minio_secure",
+                        "in": "query"
+                    },
+                    {
+                        "required": false,
+                        "schema": {
+                            "title": "Minio Access Key",
+                            "type": "string"
+                        },
+                        "name": "minio_access_key",
+                        "in": "query"
+                    },
+                    {
+                        "required": false,
+                        "schema": {
+                            "title": "Minio Secret Key",
+                            "type": "string"
+                        },
+                        "name": "minio_secret_key",
+                        "in": "query"
+                    },
+                    {
+                        "required": false,
+                        "schema": {
+                            "title": "Minio Session Token",
+                            "type": "string"
+                        },
+                        "name": "minio_session_token",
+                        "in": "query"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Body_read_minio_read_minio_post"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Body_read_minio_read_minio_post": {
+                "title": "Body_read_minio_read_minio_post",
+                "type": "object",
+                "properties": {
+                    "file_extractor": {
+                        "title": "File Extractor",
+                        "type": "object"
+                    },
+                    "required_exts": {
+                        "title": "Required Exts",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "HTTPValidationError": {
+                "title": "HTTPValidationError",
+                "type": "object",
+                "properties": {
+                    "detail": {
+                        "title": "Detail",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        }
+                    }
+                }
+            },
+            "ValidationError": {
+                "title": "ValidationError",
+                "required": [
+                    "loc",
+                    "msg",
+                    "type"
+                ],
+                "type": "object",
+                "properties": {
+                    "loc": {
+                        "title": "Location",
+                        "type": "array",
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "integer"
+                                }
+                            ]
+                        }
+                    },
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
