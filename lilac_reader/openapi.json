@@ -1,0 +1,188 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
+    "paths": {
+        "/load_data": {
+            "get": {
+                "summary": "Load Data",
+                "operationId": "load_data_load_data_get",
+                "parameters": [
+                    {
+                        "description": "The dataset to load, formatted as {namespace}/{dataset_name}",
+                        "required": true,
+                        "schema": {
+                            "title": "Dataset",
+                            "type": "string",
+                            "description": "The dataset to load, formatted as {namespace}/{dataset_name}"
+                        },
+                        "name": "dataset",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Path to the text field in the dataset",
+                        "required": false,
+                        "schema": {
+                            "title": "Text Path",
+                            "type": "string",
+                            "description": "Path to the text field in the dataset",
+                            "default": "text"
+                        },
+                        "name": "text_path",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Path to the document ID field in the dataset",
+                        "required": false,
+                        "schema": {
+                            "title": "Doc Id Path",
+                            "type": "string",
+                            "description": "Path to the document ID field in the dataset"
+                        },
+                        "name": "doc_id_path",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Columns to load from the dataset",
+                        "required": false,
+                        "schema": {
+                            "title": "Columns",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "description": "Columns to load from the dataset"
+                        },
+                        "name": "columns",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Filters to apply to the dataset before loading",
+                        "required": false,
+                        "schema": {
+                            "title": "Filters",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "description": "Filters to apply to the dataset before loading"
+                        },
+                        "name": "filters",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Lilac project directory to read from",
+                        "required": false,
+                        "schema": {
+                            "title": "Project Dir",
+                            "type": "string",
+                            "description": "Lilac project directory to read from"
+                        },
+                        "name": "project_dir",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "title": "Response Load Data Load Data Get",
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/DocumentModel"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "DocumentModel": {
+                "title": "DocumentModel",
+                "required": [
+                    "text"
+                ],
+                "type": "object",
+                "properties": {
+                    "text": {
+                        "title": "Text",
+                        "type": "string"
+                    },
+                    "doc_id": {
+                        "title": "Doc Id",
+                        "type": "string"
+                    },
+                    "extra_info": {
+                        "title": "Extra Info",
+                        "type": "object",
+                        "default": {}
+                    }
+                }
+            },
+            "HTTPValidationError": {
+                "title": "HTTPValidationError",
+                "type": "object",
+                "properties": {
+                    "detail": {
+                        "title": "Detail",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        }
+                    }
+                }
+            },
+            "ValidationError": {
+                "title": "ValidationError",
+                "required": [
+                    "loc",
+                    "msg",
+                    "type"
+                ],
+                "type": "object",
+                "properties": {
+                    "loc": {
+                        "title": "Location",
+                        "type": "array",
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "integer"
+                                }
+                            ]
+                        }
+                    },
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
