@@ -42,9 +42,3 @@ async def pass_response_to_webhook(
     except requests.exceptions.HTTPError as e:
         raise HTTPException(status_code=r.status_code, detail=str(e))
     return {"message": "Response passed to webhook successfully."}
-
-
-if __name__ == "__main__":
-    import uvicorn
-
-    uvicorn.run(app, host="0.0.0.0", port=8000)
