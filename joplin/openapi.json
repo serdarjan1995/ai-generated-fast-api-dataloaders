@@ -1,0 +1,84 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
+    "paths": {
+        "/load_folders/": {
+            "get": {
+                "summary": "Load folders",
+                "description": "Load folders from Joplin with the provided API key.",
+                "operationId": "load_folders_load_folders__get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ]
+            }
+        },
+        "/load_notes/": {
+            "get": {
+                "summary": "Load notes",
+                "description": "Load notes from Joplin with the provided API key.",
+                "operationId": "load_folders_load_notes__get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ]
+            }
+        },
+        "/load_tags/": {
+            "get": {
+                "summary": "Load tags",
+                "description": "Load tags from Joplin with the provided API key.",
+                "operationId": "load_folders_load_tags__get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "APIKeyHeader": {
+                "type": "apiKey",
+                "in": "header",
+                "name": "access_token"
+            }
+        }
+    }
+}
