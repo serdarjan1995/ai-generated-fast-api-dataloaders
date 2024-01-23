@@ -1,0 +1,184 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
+    "paths": {
+        "/load_data/": {
+            "post": {
+                "summary": "Load MangoppsGuides data",
+                "description": "Loads data from the MangoppsGuides website given a domain URL and limit.",
+                "operationId": "load_data_load_data__post",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "Domain Url",
+                            "maxLength": 2083,
+                            "minLength": 1,
+                            "type": "string",
+                            "format": "uri"
+                        },
+                        "name": "domain_url",
+                        "in": "query"
+                    },
+                    {
+                        "required": false,
+                        "schema": {
+                            "title": "Limit",
+                            "type": "integer",
+                            "default": 5
+                        },
+                        "name": "limit",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "title": "Response Load Data Load Data  Post",
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Document"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/crawl_urls/": {
+            "get": {
+                "summary": "Crawl URLs from a MangoppsGuides domain",
+                "description": "Returns a list of URLs that have been crawled from the specified MangoppsGuides domain URL.",
+                "operationId": "crawl_urls_crawl_urls__get",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "Domain Url",
+                            "maxLength": 2083,
+                            "minLength": 1,
+                            "type": "string",
+                            "format": "uri"
+                        },
+                        "name": "domain_url",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "Token",
+                            "type": "string"
+                        },
+                        "name": "token",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Document": {
+                "title": "Document",
+                "required": [
+                    "text",
+                    "extra_info"
+                ],
+                "type": "object",
+                "properties": {
+                    "text": {
+                        "title": "Text",
+                        "type": "string"
+                    },
+                    "extra_info": {
+                        "title": "Extra Info",
+                        "type": "object"
+                    }
+                }
+            },
+            "HTTPValidationError": {
+                "title": "HTTPValidationError",
+                "type": "object",
+                "properties": {
+                    "detail": {
+                        "title": "Detail",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        }
+                    }
+                }
+            },
+            "ValidationError": {
+                "title": "ValidationError",
+                "required": [
+                    "loc",
+                    "msg",
+                    "type"
+                ],
+                "type": "object",
+                "properties": {
+                    "loc": {
+                        "title": "Location",
+                        "type": "array",
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "integer"
+                                }
+                            ]
+                        }
+                    },
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
