@@ -2,17 +2,9 @@ from fastapi import FastAPI, HTTPException, Security
 from fastapi.security.api_key import APIKeyHeader
 from typing import List
 from pydantic import BaseModel
-import json
-
-"""Hugging Face file reader.
-
-A parser for HF files.
-
-"""
 from typing import List
 from llama_index.readers.schema.base import Document
 import llama_hub.huggingface.fs as HuggingFaceFSReader
-import json
 
 
 app = FastAPI(openapi_url="/api/v1/openapi.json")
