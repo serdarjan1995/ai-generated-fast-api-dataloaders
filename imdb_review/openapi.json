@@ -1,0 +1,163 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
+    "paths": {
+        "/load-reviews/": {
+            "get": {
+                "summary": "Load IMDB movie reviews",
+                "operationId": "load_movie_reviews_load_reviews__get",
+                "parameters": [
+                    {
+                        "description": "The name of the movie or series and year, e.g., \"The Social Network 2010\"",
+                        "required": true,
+                        "schema": {
+                            "title": "Movie Name Year",
+                            "type": "string",
+                            "description": "The name of the movie or series and year, e.g., \"The Social Network 2010\""
+                        },
+                        "name": "movie_name_year",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The webdriver engine to use",
+                        "required": false,
+                        "schema": {
+                            "title": "Webdriver Engine",
+                            "enum": [
+                                "google",
+                                "edge",
+                                "firefox"
+                            ],
+                            "type": "string",
+                            "description": "The webdriver engine to use",
+                            "default": "google"
+                        },
+                        "name": "webdriver_engine",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Whether to generate a CSV file or not",
+                        "required": false,
+                        "schema": {
+                            "title": "Generate Csv",
+                            "type": "boolean",
+                            "description": "Whether to generate a CSV file or not",
+                            "default": false
+                        },
+                        "name": "generate_csv",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Whether to use multithreading or not",
+                        "required": false,
+                        "schema": {
+                            "title": "Multithreading",
+                            "type": "boolean",
+                            "description": "Whether to use multithreading or not",
+                            "default": false
+                        },
+                        "name": "multithreading",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The number of workers to use if multithreading is enabled",
+                        "required": false,
+                        "schema": {
+                            "title": "Max Workers",
+                            "type": "integer",
+                            "description": "The number of workers to use if multithreading is enabled",
+                            "default": 0
+                        },
+                        "name": "max_workers",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The folder path to save the reviews",
+                        "required": false,
+                        "schema": {
+                            "title": "Reviews Folder",
+                            "type": "string",
+                            "description": "The folder path to save the reviews",
+                            "default": "movie_reviews"
+                        },
+                        "name": "reviews_folder",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "HTTPValidationError": {
+                "title": "HTTPValidationError",
+                "type": "object",
+                "properties": {
+                    "detail": {
+                        "title": "Detail",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        }
+                    }
+                }
+            },
+            "ValidationError": {
+                "title": "ValidationError",
+                "required": [
+                    "loc",
+                    "msg",
+                    "type"
+                ],
+                "type": "object",
+                "properties": {
+                    "loc": {
+                        "title": "Location",
+                        "type": "array",
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "integer"
+                                }
+                            ]
+                        }
+                    },
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
