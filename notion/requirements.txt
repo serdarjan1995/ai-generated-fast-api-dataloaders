@@ -1,5 +1,0 @@
-fastapi==0.75.2
-pydantic==1.9.1
-requests==2.27.1
-uvicorn==0.17.6
-python-multipart==0.0.5
