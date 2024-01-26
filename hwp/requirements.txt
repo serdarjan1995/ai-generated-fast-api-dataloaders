@@ -2,3 +2,6 @@ fastapi
 pydantic
 python-multipart
 olefile
+
+llama_hub
+llama_index

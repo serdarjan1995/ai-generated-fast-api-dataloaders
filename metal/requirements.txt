@@ -3,3 +3,6 @@ uvicorn==0.17.6
 pydantic==1.10.0
 
 metal_sdk
+
+llama_hub
+llama_index

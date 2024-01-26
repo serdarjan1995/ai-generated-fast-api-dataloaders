@@ -4,3 +4,7 @@ minio==7.1.0
 llama_index
 
 minio
+
+
+llama_hub
+llama_index

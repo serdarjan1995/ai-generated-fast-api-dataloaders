@@ -5,3 +5,5 @@ huggingface-hub
 pandas==1.4.2
 
 huggingface-hub
+llama_hub
+llama_index

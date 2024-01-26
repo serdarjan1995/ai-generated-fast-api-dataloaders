@@ -4,3 +4,6 @@ requests==2.26.0
 pydantic==1.10.0
 
 requests
+
+llama_hub
+llama_index

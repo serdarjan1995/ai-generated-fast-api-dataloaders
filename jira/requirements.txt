@@ -6,3 +6,6 @@ python-multipart
 python-dotenv
 
 jira
+
+llama_hub
+llama_index

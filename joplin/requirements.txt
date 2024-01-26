@@ -1,3 +1,6 @@
 fastapi==0.85.0
 uvicorn==0.18.2
 pydantic==1.10.2
+
+llama_hub
+llama_index

@@ -4,3 +4,6 @@ llama_index
 geopy==2.2.0
 osmxtract
 geopy
+
+llama_hub
+llama_index
