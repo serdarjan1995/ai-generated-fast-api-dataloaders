@@ -1,2 +1,5 @@
 fastapi
 uvicorn
+
+llama_hub
+llama_index
