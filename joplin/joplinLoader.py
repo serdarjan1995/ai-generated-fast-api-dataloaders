@@ -6,16 +6,8 @@ from joplin_api import JoplinApi
 # app = FastAPI()
 app = FastAPI(openapi_url="/api/v1/openapi.json")
 
-API_KEY = "your-api-key"
 API_KEY_NAME = "access_token"
 api_key_header = APIKeyHeader(name=API_KEY_NAME, auto_error=True)
-
-
-async def get_api_key(api_key: str = Security(api_key_header)):
-    if api_key == API_KEY:
-        return api_key
-    else:
-        raise HTTPException(status_code=403, detail="Could not validate credentials")
 
 
 class Document(BaseModel):
@@ -28,7 +20,7 @@ class Document(BaseModel):
     summary="Load folders",
     description="Load folders from Joplin with the provided API key.",
 )
-def load_folders(api_key: str = Security(get_api_key)):
+def load_folders(api_key: str = Security(api_key_header)):
     try:
         joplin = JoplinApi(token=api_key)
         joplin.ping()
@@ -42,7 +34,7 @@ def load_folders(api_key: str = Security(get_api_key)):
     summary="Load notes",
     description="Load notes from Joplin with the provided API key.",
 )
-def load_folders(api_key: str = Security(get_api_key)):
+def load_folders(api_key: str = Security(api_key_header)):
     try:
         joplin = JoplinApi(token=api_key)
         joplin.ping()
@@ -56,7 +48,7 @@ def load_folders(api_key: str = Security(get_api_key)):
     summary="Load tags",
     description="Load tags from Joplin with the provided API key.",
 )
-def load_folders(api_key: str = Security(get_api_key)):
+def load_folders(api_key: str = Security(api_key_header)):
     try:
         joplin = JoplinApi(token=api_key)
         joplin.ping()
