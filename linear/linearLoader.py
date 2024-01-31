@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Security
+from fastapi import FastAPI, Security, Request, Body
 from fastapi.security.api_key import APIKeyHeader
 from typing import List
 from pydantic import BaseModel
@@ -15,8 +15,15 @@ class Document(BaseModel):
     extra_info: dict
 
 
+class Item(BaseModel):
+    query: str
+
+
 @app.post("/load_data/", response_model=List[Document])
-async def load_data(query: str, api_key: APIKeyHeader = Security(api_key_header)):
-    print(query)
+async def load_data(
+    item: Item = Body(...),
+    api_key: APIKeyHeader = Security(api_key_header),
+):
+    print(item.query)
     linear_reader = LinearReader(api_key=api_key)
-    return linear_reader.load_data(query=query)
+    return linear_reader.load_data(query=item.query)

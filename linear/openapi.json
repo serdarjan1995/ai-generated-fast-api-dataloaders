@@ -9,17 +9,16 @@
             "post": {
                 "summary": "Load Data",
                 "operationId": "load_data_load_data__post",
-                "parameters": [
-                    {
-                        "required": true,
-                        "schema": {
-                            "title": "Query",
-                            "type": "string"
-                        },
-                        "name": "query",
-                        "in": "query"
-                    }
-                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Item"
+                            }
+                        }
+                    },
+                    "required": true
+                },
                 "responses": {
                     "200": {
                         "description": "Successful Response",
@@ -84,6 +83,19 @@
                         "items": {
                             "$ref": "#/components/schemas/ValidationError"
                         }
+                    }
+                }
+            },
+            "Item": {
+                "title": "Item",
+                "required": [
+                    "query"
+                ],
+                "type": "object",
+                "properties": {
+                    "query": {
+                        "title": "Query",
+                        "type": "string"
                     }
                 }
             },
