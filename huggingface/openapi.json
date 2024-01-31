@@ -55,12 +55,7 @@
                             }
                         }
                     }
-                },
-                "security": [
-                    {
-                        "APIKeyHeader": []
-                    }
-                ]
+                }
             }
         },
         "/load-df": {
@@ -113,12 +108,7 @@
                             }
                         }
                     }
-                },
-                "security": [
-                    {
-                        "APIKeyHeader": []
-                    }
-                ]
+                }
             }
         },
         "/load-data": {
@@ -171,12 +161,7 @@
                             }
                         }
                     }
-                },
-                "security": [
-                    {
-                        "APIKeyHeader": []
-                    }
-                ]
+                }
             }
         }
     },
@@ -253,13 +238,6 @@
                         "type": "string"
                     }
                 }
-            }
-        },
-        "securitySchemes": {
-            "APIKeyHeader": {
-                "type": "apiKey",
-                "in": "header",
-                "name": "access_token"
             }
         }
     }
