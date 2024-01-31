@@ -16,7 +16,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/QueryModel"
+                                "$ref": "#/components/schemas/RequestModel"
                             }
                         }
                     },
@@ -41,12 +41,7 @@
                             }
                         }
                     }
-                },
-                "security": [
-                    {
-                        "APIKeyHeader": []
-                    }
-                ]
+                }
             }
         }
     },
@@ -91,6 +86,43 @@
                     }
                 }
             },
+            "RequestModel": {
+                "title": "RequestModel",
+                "required": [
+                    "host",
+                    "user",
+                    "password",
+                    "query"
+                ],
+                "type": "object",
+                "properties": {
+                    "host": {
+                        "title": "Host",
+                        "type": "string"
+                    },
+                    "port": {
+                        "title": "Port",
+                        "type": "integer",
+                        "default": 19530
+                    },
+                    "user": {
+                        "title": "User",
+                        "type": "string"
+                    },
+                    "password": {
+                        "title": "Password",
+                        "type": "string"
+                    },
+                    "use_secure": {
+                        "title": "Use Secure",
+                        "type": "boolean",
+                        "default": false
+                    },
+                    "query": {
+                        "$ref": "#/components/schemas/QueryModel"
+                    }
+                }
+            },
             "ValidationError": {
                 "title": "ValidationError",
                 "required": [
@@ -123,13 +155,6 @@
                         "type": "string"
                     }
                 }
-            }
-        },
-        "securitySchemes": {
-            "APIKeyHeader": {
-                "type": "apiKey",
-                "in": "header",
-                "name": "X-API-KEY"
             }
         }
     }
