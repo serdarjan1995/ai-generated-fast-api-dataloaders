@@ -8,7 +8,6 @@ import llama_hub.huggingface.fs as HuggingFaceFSReader
 
 
 app = FastAPI(openapi_url="/api/v1/openapi.json")
-api_key_header = APIKeyHeader(name="access_token", auto_error=False)
 
 
 class Document(BaseModel):
@@ -25,7 +24,7 @@ class ErrorModel(BaseModel):
     response_model=List[dict],
     responses={404: {"model": ErrorModel}},
 )
-def get_load_dicts(path: str, api_key: str = Security(api_key_header)):
+def get_load_dicts(path: str):
     try:
         reader = HuggingFaceFSReader()
         return reader.load_dicts(path)
@@ -39,7 +38,7 @@ def get_load_dicts(path: str, api_key: str = Security(api_key_header)):
     response_model=List[dict],
     responses={404: {"model": ErrorModel}},
 )
-def get_load_df(path: str, api_key: str = Security(api_key_header)):
+def get_load_df(path: str):
     try:
         reader = HuggingFaceFSReader()
         df = reader.load_df(path)
@@ -54,7 +53,7 @@ def get_load_df(path: str, api_key: str = Security(api_key_header)):
     response_model=List[Document],
     responses={404: {"model": ErrorModel}},
 )
-def get_load_data(path: str, api_key: str = Security(api_key_header)):
+def get_load_data(path: str):
     try:
         reader = HuggingFaceFSReader()
         docs = reader.load_data(path)
