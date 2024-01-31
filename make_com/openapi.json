@@ -10,24 +10,11 @@
                 "summary": "Pass response to Make.com webhook",
                 "description": "Pass a response object to a specified Make.com webhook url.",
                 "operationId": "pass_response_to_webhook_pass_response_to_webhook__post",
-                "parameters": [
-                    {
-                        "description": "Webhook URL to which the response will be sent",
-                        "required": true,
-                        "schema": {
-                            "title": "Webhook Url",
-                            "type": "string",
-                            "description": "Webhook URL to which the response will be sent"
-                        },
-                        "name": "webhook_url",
-                        "in": "query"
-                    }
-                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Body_pass_response_to_webhook_pass_response_to_webhook__post"
+                                "$ref": "#/components/schemas/RequestModel"
                             }
                         }
                     },
@@ -58,29 +45,6 @@
     },
     "components": {
         "schemas": {
-            "Body_pass_response_to_webhook_pass_response_to_webhook__post": {
-                "title": "Body_pass_response_to_webhook_pass_response_to_webhook__post",
-                "required": [
-                    "response"
-                ],
-                "type": "object",
-                "properties": {
-                    "response": {
-                        "title": "Response",
-                        "allOf": [
-                            {
-                                "$ref": "#/components/schemas/ResponseModel"
-                            }
-                        ],
-                        "description": "Response object containing the response and source nodes"
-                    },
-                    "query": {
-                        "title": "Query",
-                        "type": "string",
-                        "description": "Optional query string"
-                    }
-                }
-            },
             "HTTPValidationError": {
                 "title": "HTTPValidationError",
                 "type": "object",
@@ -108,6 +72,22 @@
                     "score": {
                         "title": "Score",
                         "type": "number"
+                    }
+                }
+            },
+            "RequestModel": {
+                "title": "RequestModel",
+                "required": [
+                    "webhook_url"
+                ],
+                "type": "object",
+                "properties": {
+                    "webhook_url": {
+                        "title": "Webhook Url",
+                        "type": "string"
+                    },
+                    "response": {
+                        "$ref": "#/components/schemas/ResponseModel"
                     }
                 }
             },

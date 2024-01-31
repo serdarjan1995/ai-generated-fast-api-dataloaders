@@ -17,21 +17,25 @@ class ResponseModel(BaseModel):
     query: Optional[str] = None
 
 
+class RequestModel(BaseModel):
+    webhook_url: str
+    response: ResponseModel = None
+
+
 @app.post(
     "/pass-response-to-webhook/",
     summary="Pass response to Make.com webhook",
     description="Pass a response object to a specified Make.com webhook url.",
 )
 async def pass_response_to_webhook(
-    webhook_url: str,
-    response: ResponseModel,
+    item: RequestModel = Body(...),
 ):
     json_dict = {
-        "response": response.response,
-        "source_nodes": [node.dict() for node in response.source_nodes],
-        "query": response.query,
+        "response": item.response.response,
+        "source_nodes": [node.dict() for node in item.response.source_nodes],
+        "query": item.response.query,
     }
-    r = requests.post(webhook_url, json=json_dict)
+    r = requests.post(item.webhook_url, json=json_dict)
     try:
         r.raise_for_status()
     except requests.exceptions.HTTPError as e:
