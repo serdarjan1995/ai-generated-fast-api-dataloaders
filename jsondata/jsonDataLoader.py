@@ -10,9 +10,6 @@ app = FastAPI(openapi_url="/api/v1/openapi.json")
 @app.post("/load_json/", summary="Load JSON data", response_model=List[Document])
 def load_json(
     data: Union[str, dict],
-    api_key: APIKeyHeader = Security(
-        APIKeyHeader(name="access_token", auto_error=True)
-    ),
 ):
     try:
         reader = JsonDataReader()
