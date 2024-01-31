@@ -389,23 +389,6 @@ class SharePointReader(BaseReader):
 
 app = FastAPI(title="SharePoint Reader API", openapi_url="/api/v1/openapi.json")
 
-API_KEY = "secret-api-key"
-API_KEY_NAME = "access_token"
-api_key_query = APIKeyQuery(name=API_KEY_NAME, auto_error=False)
-api_key_header = APIKeyHeader(name=API_KEY_NAME, auto_error=False)
-
-
-async def get_api_key(
-    api_key_query: str = Security(api_key_query),
-    api_key_header: str = Security(api_key_header),
-):
-    if api_key_query == API_KEY:
-        return api_key_query
-    elif api_key_header == API_KEY:
-        return api_key_header
-    else:
-        raise HTTPException(status_code=403, detail="Could not validate credentials")
-
 
 class SharePointFileLoadRequest(BaseModel):
     client_id: str
@@ -417,9 +400,7 @@ class SharePointFileLoadRequest(BaseModel):
 
 
 @app.post("/load-data/", summary="Load Files from SharePoint")
-def load_data_from_sharepoint(
-    request: SharePointFileLoadRequest, api_key: APIKey = Security(get_api_key)
-):
+def load_data_from_sharepoint(request: SharePointFileLoadRequest):
     try:
         loader = SharePointReader(
             client_id=request.client_id,
