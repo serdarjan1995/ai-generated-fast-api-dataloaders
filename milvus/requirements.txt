@@ -6,5 +6,5 @@ python-multipart==0.0.5
 fastapi-security==0.1.0
 pymilvus
 
-llama_hub
-llama_index
+llama_hub==0.0.77
+llama_index==0.9.40

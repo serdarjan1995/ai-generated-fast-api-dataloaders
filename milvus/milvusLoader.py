@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, Depends, Body
+from fastapi import FastAPI, Body
 from pydantic import BaseModel
 from typing import List
 from fastapi.security.api_key import APIKeyHeader
