@@ -1,10 +1,8 @@
 fastapi==0.75.1
 uvicorn==0.15.0
 minio==7.1.0
-llama_index
 
 minio
 
-
-llama_hub
-llama_index
+llama_hub==0.0.77
+llama_index==0.9.40

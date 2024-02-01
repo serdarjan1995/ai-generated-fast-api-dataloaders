@@ -9,118 +9,15 @@
             "post": {
                 "summary": "Read files from Minio",
                 "operationId": "read_minio_read_minio_post",
-                "parameters": [
-                    {
-                        "required": true,
-                        "schema": {
-                            "title": "Bucket",
-                            "type": "string"
-                        },
-                        "name": "bucket",
-                        "in": "query"
-                    },
-                    {
-                        "required": false,
-                        "schema": {
-                            "title": "Key",
-                            "type": "string"
-                        },
-                        "name": "key",
-                        "in": "query"
-                    },
-                    {
-                        "required": false,
-                        "schema": {
-                            "title": "Prefix",
-                            "type": "string",
-                            "default": ""
-                        },
-                        "name": "prefix",
-                        "in": "query"
-                    },
-                    {
-                        "required": false,
-                        "schema": {
-                            "title": "Filename As Id",
-                            "type": "boolean",
-                            "default": false
-                        },
-                        "name": "filename_as_id",
-                        "in": "query"
-                    },
-                    {
-                        "required": false,
-                        "schema": {
-                            "title": "Num Files Limit",
-                            "type": "integer"
-                        },
-                        "name": "num_files_limit",
-                        "in": "query"
-                    },
-                    {
-                        "required": false,
-                        "schema": {
-                            "title": "File Metadata",
-                            "type": "string"
-                        },
-                        "name": "file_metadata",
-                        "in": "query"
-                    },
-                    {
-                        "required": false,
-                        "schema": {
-                            "title": "Minio Endpoint",
-                            "type": "string"
-                        },
-                        "name": "minio_endpoint",
-                        "in": "query"
-                    },
-                    {
-                        "required": false,
-                        "schema": {
-                            "title": "Minio Secure",
-                            "type": "boolean",
-                            "default": false
-                        },
-                        "name": "minio_secure",
-                        "in": "query"
-                    },
-                    {
-                        "required": false,
-                        "schema": {
-                            "title": "Minio Access Key",
-                            "type": "string"
-                        },
-                        "name": "minio_access_key",
-                        "in": "query"
-                    },
-                    {
-                        "required": false,
-                        "schema": {
-                            "title": "Minio Secret Key",
-                            "type": "string"
-                        },
-                        "name": "minio_secret_key",
-                        "in": "query"
-                    },
-                    {
-                        "required": false,
-                        "schema": {
-                            "title": "Minio Session Token",
-                            "type": "string"
-                        },
-                        "name": "minio_session_token",
-                        "in": "query"
-                    }
-                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Body_read_minio_read_minio_post"
+                                "$ref": "#/components/schemas/RequestModel"
                             }
                         }
-                    }
+                    },
+                    "required": true
                 },
                 "responses": {
                     "200": {
@@ -147,23 +44,6 @@
     },
     "components": {
         "schemas": {
-            "Body_read_minio_read_minio_post": {
-                "title": "Body_read_minio_read_minio_post",
-                "type": "object",
-                "properties": {
-                    "file_extractor": {
-                        "title": "File Extractor",
-                        "type": "object"
-                    },
-                    "required_exts": {
-                        "title": "Required Exts",
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        }
-                    }
-                }
-            },
             "HTTPValidationError": {
                 "title": "HTTPValidationError",
                 "type": "object",
@@ -174,6 +54,73 @@
                         "items": {
                             "$ref": "#/components/schemas/ValidationError"
                         }
+                    }
+                }
+            },
+            "RequestModel": {
+                "title": "RequestModel",
+                "required": [
+                    "bucket"
+                ],
+                "type": "object",
+                "properties": {
+                    "bucket": {
+                        "title": "Bucket",
+                        "type": "string"
+                    },
+                    "key": {
+                        "title": "Key",
+                        "type": "string"
+                    },
+                    "prefix": {
+                        "title": "Prefix",
+                        "type": "string",
+                        "default": ""
+                    },
+                    "file_extractor": {
+                        "title": "File Extractor",
+                        "type": "object"
+                    },
+                    "required_exts": {
+                        "title": "Required Exts",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "filename_as_id": {
+                        "title": "Filename As Id",
+                        "type": "boolean",
+                        "default": false
+                    },
+                    "num_files_limit": {
+                        "title": "Num Files Limit",
+                        "type": "integer"
+                    },
+                    "file_metadata": {
+                        "title": "File Metadata",
+                        "type": "string"
+                    },
+                    "minio_endpoint": {
+                        "title": "Minio Endpoint",
+                        "type": "string"
+                    },
+                    "minio_secure": {
+                        "title": "Minio Secure",
+                        "type": "boolean",
+                        "default": false
+                    },
+                    "minio_access_key": {
+                        "title": "Minio Access Key",
+                        "type": "string"
+                    },
+                    "minio_secret_key": {
+                        "title": "Minio Secret Key",
+                        "type": "string"
+                    },
+                    "minio_session_token": {
+                        "title": "Minio Session Token",
+                        "type": "string"
                     }
                 }
             },
