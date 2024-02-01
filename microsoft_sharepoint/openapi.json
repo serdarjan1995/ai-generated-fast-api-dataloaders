@@ -38,15 +38,7 @@
                             }
                         }
                     }
-                },
-                "security": [
-                    {
-                        "APIKeyQuery": []
-                    },
-                    {
-                        "APIKeyHeader": []
-                    }
-                ]
+                }
             }
         }
     },
@@ -135,18 +127,6 @@
                         "type": "string"
                     }
                 }
-            }
-        },
-        "securitySchemes": {
-            "APIKeyQuery": {
-                "type": "apiKey",
-                "in": "query",
-                "name": "access_token"
-            },
-            "APIKeyHeader": {
-                "type": "apiKey",
-                "in": "header",
-                "name": "access_token"
             }
         }
     }
