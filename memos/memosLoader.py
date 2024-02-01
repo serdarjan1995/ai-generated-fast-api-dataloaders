@@ -1,5 +1,5 @@
 from typing import Dict, List, Optional
-from fastapi import FastAPI, Query
+from fastapi import FastAPI, Body
 from pydantic import BaseModel
 import llama_hub.memos as MemosReader
 
@@ -11,14 +11,16 @@ class Document(BaseModel):
     extra_info: Dict
 
 
+class RequestModel(BaseModel):
+    host: str
+    params: Optional[Dict] = None
+
+
 def get_loader(host: str):
     return MemosReader(host)
 
 
 @app.get("/load_data", response_model=List[Document])
-async def load_data(
-    host: str = Query(..., description="Host where memos is deployed"),
-    params: Optional[Dict] = None,
-):
-    loader = get_loader(host)
-    return loader.load_data(params)
+async def load_data(request: RequestModel = Body(...)):
+    loader = get_loader(request.host)
+    return loader.load_data(request.params)

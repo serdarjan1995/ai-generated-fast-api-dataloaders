@@ -1,7 +1,7 @@
-fastapi==0.75.0
+fastapi==0.78.0
 uvicorn==0.17.6
 requests==2.27.1
-pydantic==1.9.0
+pydantic==1.10.0
 
-llama_hub
-llama_index
+llama_hub==0.0.1
+llama_index==0.9
