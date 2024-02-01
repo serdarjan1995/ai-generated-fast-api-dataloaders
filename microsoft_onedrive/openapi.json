@@ -10,53 +10,15 @@
                 "summary": "Load Data",
                 "description": "Load data from OneDrive using specified parameters.",
                 "operationId": "load_data_load_data_post",
-                "parameters": [
-                    {
-                        "required": false,
-                        "schema": {
-                            "title": "Folder Id",
-                            "type": "string"
-                        },
-                        "name": "folder_id",
-                        "in": "query"
-                    },
-                    {
-                        "required": false,
-                        "schema": {
-                            "title": "Folder Path",
-                            "type": "string"
-                        },
-                        "name": "folder_path",
-                        "in": "query"
-                    },
-                    {
-                        "required": false,
-                        "schema": {
-                            "title": "Recursive",
-                            "type": "boolean",
-                            "default": true
-                        },
-                        "name": "recursive",
-                        "in": "query"
-                    },
-                    {
-                        "required": false,
-                        "schema": {
-                            "title": "Userprincipalname",
-                            "type": "string"
-                        },
-                        "name": "userprincipalname",
-                        "in": "query"
-                    }
-                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Body_load_data_load_data_post"
+                                "$ref": "#/components/schemas/RequestModel"
                             }
                         }
-                    }
+                    },
+                    "required": true
                 },
                 "responses": {
                     "200": {
@@ -77,27 +39,43 @@
                             }
                         }
                     }
-                },
-                "security": [
-                    {
-                        "OAuth2PasswordBearer": []
-                    }
-                ]
+                }
             }
         }
     },
     "components": {
         "schemas": {
-            "Body_load_data_load_data_post": {
-                "title": "Body_load_data_load_data_post",
+            "HTTPValidationError": {
+                "title": "HTTPValidationError",
                 "type": "object",
                 "properties": {
+                    "detail": {
+                        "title": "Detail",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        }
+                    }
+                }
+            },
+            "LoadDataQueryParams": {
+                "title": "LoadDataQueryParams",
+                "type": "object",
+                "properties": {
+                    "folder_id": {
+                        "title": "Folder Id",
+                        "type": "string"
+                    },
                     "file_ids": {
                         "title": "File Ids",
                         "type": "array",
                         "items": {
                             "type": "string"
                         }
+                    },
+                    "folder_path": {
+                        "title": "Folder Path",
+                        "type": "string"
                     },
                     "file_paths": {
                         "title": "File Paths",
@@ -112,19 +90,37 @@
                         "items": {
                             "type": "string"
                         }
+                    },
+                    "recursive": {
+                        "title": "Recursive",
+                        "type": "boolean",
+                        "default": true
+                    },
+                    "userprincipalname": {
+                        "title": "Userprincipalname",
+                        "type": "string"
                     }
                 }
             },
-            "HTTPValidationError": {
-                "title": "HTTPValidationError",
+            "RequestModel": {
+                "title": "RequestModel",
+                "required": [
+                    "client_id",
+                    "client_secret",
+                    "query"
+                ],
                 "type": "object",
                 "properties": {
-                    "detail": {
-                        "title": "Detail",
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/ValidationError"
-                        }
+                    "client_id": {
+                        "title": "Client Id",
+                        "type": "string"
+                    },
+                    "client_secret": {
+                        "title": "Client Secret",
+                        "type": "string"
+                    },
+                    "query": {
+                        "$ref": "#/components/schemas/LoadDataQueryParams"
                     }
                 }
             },
@@ -158,17 +154,6 @@
                     "type": {
                         "title": "Error Type",
                         "type": "string"
-                    }
-                }
-            }
-        },
-        "securitySchemes": {
-            "OAuth2PasswordBearer": {
-                "type": "oauth2",
-                "flows": {
-                    "password": {
-                        "scopes": {},
-                        "tokenUrl": "token"
                     }
                 }
             }

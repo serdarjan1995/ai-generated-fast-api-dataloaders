@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, Depends
+from fastapi import FastAPI, HTTPException, Depends, Body
 from fastapi.security import OAuth2PasswordBearer
 from pydantic import BaseModel
 from typing import Optional, List
@@ -20,26 +20,28 @@ class LoadDataQueryParams(BaseModel):
     userprincipalname: Optional[str]
 
 
+class RequestModel(BaseModel):
+    client_id: str
+    client_secret: str
+    query: LoadDataQueryParams
+
+
 @app.post("/load_data")
-def load_data(
-    query_params: LoadDataQueryParams = Depends(), token: str = Depends(oauth2_scheme)
-) -> List[Document]:
+def load_data(request: RequestModel = Body(...)) -> List[Document]:
     """Load data from OneDrive using specified parameters."""
-    if not token:
-        raise HTTPException(status_code=400, detail="Missing authentication token.")
 
     loader = OneDriveReader(
-        client_id="your_client_id", client_secret="your_client_secret"
+        client_id=request.client_id, client_secret=request.client_secret
     )
     try:
         documents = loader.load_data(
-            folder_id=query_params.folder_id,
-            file_ids=query_params.file_ids,
-            folder_path=query_params.folder_path,
-            file_paths=query_params.file_paths,
-            mime_types=query_params.mime_types,
-            recursive=query_params.recursive,
-            userprincipalname=query_params.userprincipalname,
+            folder_id=request.query.folder_id,
+            file_ids=request.query.file_ids,
+            folder_path=request.query.folder_path,
+            file_paths=request.query.file_paths,
+            mime_types=request.query.mime_types,
+            recursive=request.query.recursive,
+            userprincipalname=request.query.userprincipalname,
         )
         return documents
     except Exception as e:
