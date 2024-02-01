@@ -4,5 +4,5 @@ pydantic==1.10.0
 
 metal_sdk
 
-llama_hub
-llama_index
+llama_hub==0.0.77
+llama_index==0.9.40
