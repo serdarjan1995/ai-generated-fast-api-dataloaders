@@ -9,28 +9,15 @@
             "get": {
                 "summary": "Load Data",
                 "operationId": "load_data_load_data_get",
-                "parameters": [
-                    {
-                        "description": "Host where memos is deployed",
-                        "required": true,
-                        "schema": {
-                            "title": "Host",
-                            "type": "string",
-                            "description": "Host where memos is deployed"
-                        },
-                        "name": "host",
-                        "in": "query"
-                    }
-                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
                             "schema": {
-                                "title": "Params",
-                                "type": "object"
+                                "$ref": "#/components/schemas/RequestModel"
                             }
                         }
-                    }
+                    },
+                    "required": true
                 },
                 "responses": {
                     "200": {
@@ -91,6 +78,23 @@
                         "items": {
                             "$ref": "#/components/schemas/ValidationError"
                         }
+                    }
+                }
+            },
+            "RequestModel": {
+                "title": "RequestModel",
+                "required": [
+                    "host"
+                ],
+                "type": "object",
+                "properties": {
+                    "host": {
+                        "title": "Host",
+                        "type": "string"
+                    },
+                    "params": {
+                        "title": "Params",
+                        "type": "object"
                     }
                 }
             },
